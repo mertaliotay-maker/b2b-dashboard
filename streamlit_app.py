@@ -1,6 +1,6 @@
 import streamlit as st
 from data_loader import load_data
-
+import overview
 st.set_page_config(page_title="B2B Book Distributor Dashboard", page_icon="📚", layout="wide")
 
 df = load_data()
@@ -13,9 +13,7 @@ page = st.sidebar.radio(
 )
 
 if page == "Overview":
-    st.title("Overview")
-    st.write(f"Clean dataset: {len(df):,} invoice lines")
-    st.dataframe(df.head(20))
+    overview.show(df)
 elif page == "Sales Analysis":
     st.title("Sales Analysis")
     st.info("Coming soon")
