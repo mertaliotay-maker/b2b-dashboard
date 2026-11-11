@@ -1,6 +1,4 @@
-"""Customers & Marketing page (Kişi 2).
-
-Steps:
+"""Steps:
 1. RFM per customer (Recency, Frequency, Monetary).
 2. KMeans segmentation; number of clusters chosen with elbow + silhouette.
 3. Segments get business names (Loyal / Potential / At Risk / Lost).
