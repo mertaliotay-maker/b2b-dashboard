@@ -1,3 +1,4 @@
+import plotly.express as px
 import streamlit as st
 
 
@@ -38,3 +39,50 @@ def show(df):
     c2.metric("Orders", f"{now[1]:,}", pct_change(now[1], before[1]))
     c3.metric("Customers", f"{now[2]:,}", pct_change(now[2], before[2]))
     c4.metric("Avg. Order Value", f"₺{now[3]:,.0f}", pct_change(now[3], before[3]))
+    
+    st.divider()
+
+    # --- Monthly revenue trend (whole year, selected month highlighted) ---
+    st.subheader("Monthly Revenue Trend")
+    monthly = df.groupby("YearMonth", as_index=False)["Revenue"].sum()
+    fig = px.line(monthly, x="YearMonth", y="Revenue", markers=True,
+                  labels={"YearMonth": "Month", "Revenue": "Revenue (₺)"})
+    fig.add_vline(x=selected, line_dash="dash", line_color="gray")
+    st.plotly_chart(fig, width="stretch")
+
+    # --- Top 10 products and categories in the selected month ---
+    month_df = df[df["YearMonth"] == selected]
+    left, right = st.columns(2)
+
+    with left:
+        st.subheader("Top 10 Products")
+        top_products = (month_df.groupby("Description", as_index=False)["Revenue"].sum()
+                        .nlargest(10, "Revenue").sort_values("Revenue"))
+        fig = px.bar(top_products, x="Revenue", y="Description", orientation="h",
+                     labels={"Description": "", "Revenue": "Revenue (₺)"})
+        st.plotly_chart(fig, width="stretch")
+
+    with right:
+        st.subheader("Top 10 Categories")
+        top_categories = (month_df.groupby("Category", as_index=False)["Revenue"].sum()
+                          .nlargest(10, "Revenue").sort_values("Revenue"))
+        fig = px.bar(top_categories, x="Revenue", y="Category", orientation="h",
+                     labels={"Category": "", "Revenue": "Revenue (₺)"})
+        st.plotly_chart(fig, width="stretch")
+
+    # --- Distribution by city and by sales channel (invoice series) ---
+    left, right = st.columns(2)
+
+    with left:
+        st.subheader("Top 10 Cities")
+        cities = (month_df.groupby("City", as_index=False)["Revenue"].sum()
+                  .nlargest(10, "Revenue").sort_values("Revenue"))
+        fig = px.bar(cities, x="Revenue", y="City", orientation="h",
+                     labels={"City": "", "Revenue": "Revenue (₺)"})
+        st.plotly_chart(fig, width="stretch")
+
+    with right:
+        st.subheader("Revenue by Sales Channel")
+        channels = month_df.groupby("InvoiceSeries", as_index=False)["Revenue"].sum()
+        fig = px.pie(channels, names="InvoiceSeries", values="Revenue", hole=0.5)
+        st.plotly_chart(fig, width="stretch")
