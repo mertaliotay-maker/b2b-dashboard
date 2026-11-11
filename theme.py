@@ -19,17 +19,18 @@ SEGMENT_COLORS = {
 px.defaults.color_discrete_sequence = PALETTE
 px.defaults.template = "plotly_white"
 
-
 def style(fig, height=380):
-    """Same size, margins and legend position for every chart."""
+    """Same size, margins and legend position for every chart.
+    Title at the very top, legend in its own row under the title, so they never overlap."""
     fig.update_layout(
         height=height,
-        margin=dict(l=10, r=10, t=50, b=10),
-        legend=dict(orientation="h", yanchor="bottom", y=1.02, x=0),
+        margin=dict(l=10, r=10, t=90, b=10),           # t=50 iken üst üste bindi 90 olarak değiştirdik
+        title=dict(y=0.98, yanchor="top", x=0, xanchor="left"),
+        legend=dict(orientation="h", yanchor="bottom", y=1.02, x=0,
+                    title_text=""),                    # hide legend title ("Measure", "Segment")
         hoverlabel=dict(font_size=13),
     )
     return fig
-
 
 def insight(text):
     """'What do we see, what should we do' box under a chart."""
