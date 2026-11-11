@@ -27,7 +27,7 @@ def style(fig, height=380):
         margin=dict(l=10, r=10, t=90, b=10),           # t=50 iken üst üste bindi 90 olarak değiştirdik
         title=dict(y=0.98, yanchor="top", x=0, xanchor="left"),
         legend=dict(orientation="h", yanchor="bottom", y=1.02, x=0,
-                    title_text=""),                    # hide legend title ("Measure", "Segment")
+                    title_text=""),                    # hide legend title ("Measure", "Segment") az önce üst üste binenleri komple kaldırdık
         hoverlabel=dict(font_size=13),
     )
     return fig
