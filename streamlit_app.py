@@ -19,12 +19,12 @@ df = apply_filters(df) #sonradan eklendi
 if page == "Overview":
     overview.show(df)
 elif page == "Sales Analysis":
-    customers.show(df) #alttaki satır zaten bu fonksiyonun içinde var o nedenle çıkarıldı.
-    #st.title("Sales Analysis")
-    #st.info("Coming soon")
-elif page == "Customers & Marketing":
-    st.title("Customers & Marketing")
+    st.title("Sales Analysis")
     st.info("Coming soon")
+elif page == "Customers & Marketing":
+    customers.show(df) #alttaki satır zaten bu fonksiyonun içinde var o nedenle çıkarıldı.
+    #st.title("Customers & Marketing")
+    #st.info("Coming soon")
 elif page == "Supply Chain & Forecast":
     st.title("Supply Chain & Forecast")
     st.info("Coming soon")
