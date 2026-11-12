@@ -63,7 +63,7 @@ python -m unittest discover -s tests -v
 python tests/smoke_dashboard.py
 ```
 
-Analitik testler zaman sızıntısı, hata ölçüleri, sıfır talep dönemleri, ürün kimliği, kısa geçmişler ve stok formüllerini sınar. Arayüz testi dört sayfa, tahmin ufukları, ciro hedefi, stok varsayımları ve dar/boş filtreleri değerlendirir. Test edilen ortam Windows ve Python 3.12'dir. Notebook'un 12 kod hücresi, 9 analitik test ve 15 yerel arayüz senaryosu başarıyla çalıştırılmıştır. Yeni bölümün Streamlit Cloud doğrulaması yayımdan sonra ayrıca yapılmalıdır.
+Analitik testler zaman sızıntısı, hata ölçüleri, sıfır talep dönemleri, ürün kimliği, kısa geçmişler ve stok formüllerini sınar. Arayüz testi dört sayfa, tahmin ufukları, ciro hedefi, stok varsayımları ve dar/boş filtreleri değerlendirir. Test edilen ortam Windows ve Python 3.12'dir. Notebook'un 12 kod hücresi, 9 analitik test ve 15 yerel arayüz senaryosu başarıyla çalıştırılmıştır. Streamlit Cloud üzerinde dört sayfanın açılması, 3/6/12 aylık tahminler, stok parametresi değişikliği ve CSV indirmesi de doğrulanmıştır. Canlı uygulama: https://b2b-dashboard-lvxrzvswfbscq3dj8kblaz.streamlit.app/
 
 ## Kaynaklar
 
